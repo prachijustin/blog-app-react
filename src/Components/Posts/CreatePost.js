@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 const CreatePost = (props) => {
   const initState = {
     title: "",
+    category: "",
     description: "",
   };
 
@@ -17,34 +18,75 @@ const CreatePost = (props) => {
     props.createPost(post);
   };
 
+  const handleCancel = (e) => {
+    e.preventDefault();
+    setPost(initState);
+  };
+
   return (
-    <div className="container">
-      <form onSubmit={handleSubmit}>
-        <h2>Posts</h2>
-        <h3>Add Post</h3>
-        <input
-          type="text"
-          value={post.title}
-          className="form-control"
-          placeholder="title"
-          onChange={(e) => setPost({ ...post, title: e.target.value })}
-        />
-        <br />
-        <textarea
-          type="text"
-          value={post.description}
-          className="form-control"
-          placeholder="description"
-          onChange={(e) => setPost({ ...post, description: e.target.value })}
-        />
-        <br />
-        <button className="btn btn-success">Submit</button>
-      </form>
-      {props.posts.map((p) => (
-        <li key={p.id}>
-          {p.title} --- {p.description}
-        </li>
-      ))}
+    <div>
+      <div className="row">
+        <div className="col-3"></div>
+        <div className="col-md-6">
+          <div className="card createCard">
+            <div className="card-body">
+              <form>
+                <h3>Add Post</h3>
+                <input
+                  type="text"
+                  value={post.title}
+                  className="form-control"
+                  placeholder="title"
+                  onChange={(e) => setPost({ ...post, title: e.target.value })}
+                />
+                <br />
+
+                <select
+                  className="form-control"
+                  value={post.category}
+                  onChange={(e) =>
+                    setPost({ ...post, category: e.target.value })
+                  }
+                >
+                  <option disabled value="select">
+                    --SELECT A CATEGORY--
+                  </option>
+                  <option value="Gadgets">Gadgets</option>
+                  <option value="Technologies">Technologies</option>
+                  <option value="Sofware">Sofware</option>
+                  <option value="Hardware">Hardware</option>
+                </select>
+                <br />
+                <textarea
+                  type="text"
+                  value={post.description}
+                  className="form-control"
+                  placeholder="description"
+                  onChange={(e) =>
+                    setPost({ ...post, description: e.target.value })
+                  }
+                />
+                <br />
+                <button
+                  className="btn btn-secondary"
+                  style={{ float: "right" }}
+                  onClick={handleCancel}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="btn btn-primary mr-2"
+                  style={{ float: "right" }}
+                  onClick={handleSubmit}
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div className="col-3"></div>
+      </div>
     </div>
   );
 };

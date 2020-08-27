@@ -6,3 +6,16 @@ export const createPost = (post) => {
     post,
   };
 };
+
+export const removePost = (id) => {
+  return {
+    type: types.REMOVE_POST,
+    payload: id,
+  };
+};
+
+export const getAllPosts = () => {
+  return {
+    type: types.ALL_POSTS,
+  };
+};

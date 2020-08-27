@@ -1,17 +1,8 @@
 nav {
-  background-color: #47546e;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  list-style: none;
-  min-height: 10vh;
-  color: white;
+  background-color: #e3f2fd;
 }
 
-.nav-links {
-  width: 40%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  list-style: none;
+.createCard {
+  margin-top: 30px;
+  padding: 10px 10px 10px 10px;
 }

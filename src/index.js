@@ -5,8 +5,15 @@ import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import configureStore from "./Redux/ConfigureStore";
 import { Provider } from "react-redux";
+import { saveState } from "./LocalStorage";
 
 const store = configureStore();
+
+store.subscribe(() => {
+  saveState({
+    posts: store.getState().posts,
+  });
+});
 
 ReactDOM.render(
   <React.StrictMode>

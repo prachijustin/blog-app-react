@@ -3,7 +3,7 @@ import "./App.css";
 import Header from "./Components/Common/Header";
 import Home from "./Components/Home";
 import CreatePost from "./Components/Posts/CreatePost";
-import PostList from "./Components/Posts/PostList";
+import PostDetails from "./Components/Posts/PostDetails";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -15,7 +15,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/create-post" component={CreatePost} />
-          <Route path="/posts" component={PostList} />
+          <Route path="/post/:id" component={PostDetails} />
         </Switch>
       </Router>
     </div>
