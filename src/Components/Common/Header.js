@@ -3,14 +3,6 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    // <nav>
-    //   <Link to="/">Home</Link>
-    //   <ul className="nav-links">
-    //     <Link to="/create-post">
-    //       <li>Create Post</li>
-    //     </Link>
-    //   </ul>
-    // </nav>
     <nav className="navbar navbar-light ">
       <Link to="/">
         <span className="navbar-brand">Blogging Application</span>
@@ -18,8 +10,13 @@ const Header = () => {
 
       <div>
         <Link to="/create-post">
-          <button className="btn btn-success my-2 my-sm-0" type="submit">
+          <button className="btn btn-success my-2 my-sm-0 mr-2" type="submit">
             Create Post
+          </button>
+        </Link>
+        <Link to="/manage-posts">
+          <button className="btn btn-primary my-2 my-sm-0" type="submit">
+            Manage Posts
           </button>
         </Link>
       </div>

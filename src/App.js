@@ -6,6 +6,7 @@ import CreatePost from "./Components/Posts/CreatePost";
 import PostDetails from "./Components/Posts/PostDetails";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import ManagePosts from "./Components/Posts/ManagePosts";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/create-post" component={CreatePost} />
+          <Route path="/manage-posts" component={ManagePosts} />
           <Route path="/post/:id" component={PostDetails} />
         </Switch>
       </Router>

@@ -10,7 +10,7 @@ export const createPost = (post) => {
 export const removePost = (id) => {
   return {
     type: types.REMOVE_POST,
-    payload: id,
+    id,
   };
 };
 

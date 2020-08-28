@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import * as postActions from "../../Redux/Actions/PostActions";
+import { Link } from "react-router-dom";
 
 const PostDetails = (props) => {
   useEffect(() => {}, []);
 
   const [post, setPost] = useState({});
 
+  if (!post) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="container">
       <h2>Title: {props.post.title}</h2>
       <h2>Category: {props.post.category}</h2>
       <h2>Description: {props.post.description}</h2>
+      <hr />
+      <Link to="/">Back To Index</Link>
     </div>
   );
 };

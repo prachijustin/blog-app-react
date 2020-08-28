@@ -18,7 +18,7 @@ const postReducer = (state = InitialState.posts, action) => {
         },
       ];
     case types.REMOVE_POST:
-      return state.filter((post) => post.id !== action.payload.id);
+      return state.filter((post) => post.id !== action.id);
     case types.ALL_POSTS:
       return state;
     default:
