@@ -16,9 +16,10 @@ const Home = (props) => {
         {props.posts.map((post) => (
           <div className="col mb-4" key={post.id}>
             <div className="card h-100">
-              <img src="..." class="card-img-top" alt="..." />
               <div className="card-body">
-                <h5 className="card-title">{post.title}</h5>
+                <Link to={`/post/${post.id}`}>
+                  <h5 className="card-title">{post.title}</h5>
+                </Link>
                 <p className="card-text">{post.description}</p>
               </div>
               <div className="card-footer">
