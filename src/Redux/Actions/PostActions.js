@@ -19,3 +19,18 @@ export const getAllPosts = () => {
     type: types.ALL_POSTS,
   };
 };
+
+export const giveClap = (id) => {
+  return {
+    type: types.CLAP,
+    id,
+  };
+};
+
+export const editPost = (id, post) => {
+  return {
+    type: types.EDIT_POST,
+    id,
+    post,
+  };
+};

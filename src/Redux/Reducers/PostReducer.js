@@ -1,7 +1,7 @@
 import * as types from "../Actions/ActionTypes";
 import { InitialState } from "./InitialState";
 
-let lastID = 0;
+let lastID = -1;
 
 const postReducer = (state = InitialState.posts, action) => {
   console.log("action", action);
@@ -11,9 +11,7 @@ const postReducer = (state = InitialState.posts, action) => {
         ...state,
         {
           id: ++lastID,
-          title: action.post.title,
-          category: action.post.category,
-          description: action.post.description,
+          ...action.post,
           postedOn: new Date(),
         },
       ];
@@ -21,6 +19,29 @@ const postReducer = (state = InitialState.posts, action) => {
       return state.filter((post) => post.id !== action.id);
     case types.ALL_POSTS:
       return state;
+    case types.CLAP:
+      return state.map((item, index) => {
+        if (item.id === action.id) {
+          return {
+            ...item,
+            clapCount: item.clapCount + 1,
+          };
+        }
+        return item;
+      });
+    case types.EDIT_POST:
+      return state.map((item, index) => {
+        if (item.id === action.id) {
+          return {
+            ...item,
+            title: action.post.title,
+            category: action.post.category,
+            description: action.post.description,
+          };
+        }
+        return item;
+      });
+
     default:
       return state;
   }

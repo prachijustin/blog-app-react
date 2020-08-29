@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import * as postActions from "../../Redux/Actions/PostActions";
+import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const ManagePosts = (props) => {
-  const [id, setId] = useState("");
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    props.getAllPosts();
-    // setPosts(props.posts);
-  }, []);
-
   const onHandleDelete = (id) => {
     console.log("id to delte", id);
-    setId(id);
     props.removePost(id);
+  };
+
+  const onHandleEdit = (post) => {
+    const isEdit = true;
+    // <Redirect to="/create-post" />;
+    props.history.push({
+      pathname: "/create-post",
+      state: { isEdit, post },
+    });
   };
 
   return (
@@ -24,20 +26,29 @@ const ManagePosts = (props) => {
           <th>ID</th>
           <th>Title</th>
           <th>Category</th>
-          <th></th>
+          <th>Claps</th>
+          <th>#</th>
         </tr>
         {props.posts.map((post) => (
           <tr key={post.id}>
             <td>{post.id}</td>
             <td>{post.title}</td>
             <td>{post.category}</td>
+            <td>{post.clapCount}</td>
             <td>
               <button
-                className="btn btn-danger"
+                className="btn btn-danger mr-2"
                 type="submit"
                 onClick={() => onHandleDelete(post.id)}
               >
                 Delete
+              </button>
+              <button
+                className="btn btn-warning"
+                type="submit"
+                onClick={() => onHandleEdit(post)}
+              >
+                Edit
               </button>
             </td>
           </tr>
@@ -56,7 +67,7 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getAllPosts: () => dispatch(postActions.getAllPosts()),
+    // getAllPosts: () => dispatch(postActions.getAllPosts()),
     removePost: (id) => dispatch(postActions.removePost(id)),
   };
 }

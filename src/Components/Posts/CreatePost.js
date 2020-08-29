@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import * as postActions from "../../Redux/Actions/PostActions";
 import PropTypes from "prop-types";
@@ -8,9 +8,24 @@ const CreatePost = (props) => {
     title: "",
     category: "",
     description: "",
+    clapCount: 0,
   };
 
   const [post, setPost] = useState(initState);
+  const [label, setLabel] = useState("ADD");
+
+  useEffect(() => {
+    if (props.location.state) {
+      const isEdit = props.location.state.isEdit;
+      const postCame = props.location.state.post;
+
+      if (isEdit === true) {
+        setLabel("EDIT");
+        setPost(postCame);
+        props.editPost(postCame.id, post);
+      }
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,7 +46,7 @@ const CreatePost = (props) => {
           <div className="card createCard">
             <div className="card-body">
               <form>
-                <h3>Add Post</h3>
+                <h3>{label} POST</h3>
                 <input
                   type="text"
                   value={post.title}
@@ -95,17 +110,18 @@ CreatePost.propTypes = {
   posts: PropTypes.array.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  console.log("posts:", state.posts);
-  return {
-    posts: state.posts,
-  };
-};
+// const mapStateToProps = (state) => {
+//   console.log("posts:", state.posts);
+//   return {
+//     posts: state.posts,
+//   };
+// };
 
 function mapDispatchToProps(dispatch) {
   return {
     createPost: (post) => dispatch(postActions.createPost(post)),
+    editPost: (id, post) => dispatch(postActions.editPost(id, post)),
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreatePost);
+export default connect(null, mapDispatchToProps)(CreatePost);
