@@ -1,12 +1,11 @@
 import React from "react";
 import "./App.css";
 import Header from "./Components/Common/Header";
-import Home from "./Components/Home";
-import CreatePost from "./Components/Posts/CreatePost";
-import PostDetails from "./Components/Posts/PostDetails";
-
+import PostDetails from "./Components/PostDetails";
+import CreatePost from "./Pages/CreatePost";
+import ManagePosts from "./Pages/ManagePosts";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import ManagePosts from "./Components/Posts/ManagePosts";
+import Home from "./Pages/Home";
 
 function App() {
   return (

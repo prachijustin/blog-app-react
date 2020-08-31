@@ -1,10 +1,9 @@
 import * as types from "../Actions/ActionTypes";
 import { InitialState } from "./InitialState";
 
-let lastID = -1;
+let lastID = 0;
 
 const postReducer = (state = InitialState.posts, action) => {
-  console.log("action", action);
   switch (action.type) {
     case types.CREATE_POST:
       return [
@@ -30,17 +29,22 @@ const postReducer = (state = InitialState.posts, action) => {
         return item;
       });
     case types.EDIT_POST:
-      return state.map((item, index) => {
-        if (item.id === action.id) {
-          return {
-            ...item,
-            title: action.post.title,
-            category: action.post.category,
-            description: action.post.description,
-          };
-        }
-        return item;
-      });
+      const posts = [...state];
+      const index = posts.findIndex((obj) => obj.id === action.id);
+
+      const updatedObj = {
+        ...posts[index],
+        title: action.post.title,
+        category: action.post.category,
+        description: action.post.description,
+      };
+
+      const updatedPosts = [
+        ...posts.slice(0, index),
+        updatedObj,
+        ...posts.slice(index + 1),
+      ];
+      return updatedPosts;
 
     default:
       return state;

@@ -2,11 +2,6 @@ nav {
   background-color: #e3f2fd;
 }
 
-.createCard {
-  margin-top: 30px;
-  padding: 10px 10px 10px 10px;
-}
-
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -22,4 +17,8 @@ th {
 
 th {
   background-color: #dddddd;
+}
+
+.container {
+  margin-top: 20px;
 }
